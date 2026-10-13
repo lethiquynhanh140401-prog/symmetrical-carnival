@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wootea 沃提｜手搖飲點餐 APP</title>
+<style>
+:root{--tea:#7c9a63;--deep:#34513c;--cream:#f8f6ed;--ink:#263328;--muted:#758071;--line:#e4e8d9;--peach:#f0b58d}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans TC",sans-serif}
+header{background:var(--deep);color:#fff;padding:25px 20px 34px;border-radius:0 0 28px 28px}
+.wrap{max-width:1000px;margin:auto}.nav{display:flex;justify-content:space-between;align-items:center;gap:12px}.logo{font-weight:900;letter-spacing:2px;font-size:21px}.pill{border:1px solid #ffffff55;background:#ffffff14;padding:7px 12px;border-radius:20px;font-size:12px}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:center;margin-top:26px}.eyebrow{color:#d5e1c5;font-size:12px;letter-spacing:3px}.hero h1{font-size:clamp(32px,5vw,52px);line-height:1.15;margin:10px 0}.hero p{color:#e1e9dc;margin:0;line-height:1.8}.hero-art{min-height:160px;display:grid;place-items:center;font-size:100px;background:radial-gradient(circle at 50% 45%,#dce7c4,#8da778);border-radius:25px}
+main{max-width:1000px;margin:25px auto;padding:0 18px 42px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(285px,.75fr);gap:22px}
+section{background:#fff;border:1px solid var(--line);border-radius:20px;padding:21px;box-shadow:0 8px 24px #283b2109}h2{font-size:21px;margin:0 0 5px}.sub{font-size:13px;color:var(--muted);margin:0 0 17px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:17px}.filter{padding:8px 13px;border-radius:18px;background:#f2f4ec;color:var(--deep)}.filter.active{background:var(--deep);color:white}
+.menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.item{border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;background:#fff}.art{height:116px;display:grid;place-items:center;font-size:60px;background:linear-gradient(135deg,#f4f2df,#dce7ce)}.body{padding:13px;display:flex;flex-direction:column;flex:1}.body h3{font-size:16px;margin:0 0 5px}.desc{font-size:12px;color:var(--muted);line-height:1.55;min-height:36px}.price-row{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:12px}.price{font-weight:850;color:var(--deep)}button{font:inherit;font-weight:700;border:0;cursor:pointer}.add,.primary{background:var(--deep);color:white;border-radius:10px;padding:9px 12px}.add:hover,.primary:hover{background:#243b2b}
+.cart{align-self:start;position:sticky;top:14px}.cart-head{display:flex;justify-content:space-between;align-items:center;gap:8px}.clear{background:#f4eee5;color:#8a5837;padding:8px 10px;border-radius:9px;font-size:12px}.cart-list{min-height:88px;margin:12px 0}.empty{text-align:center;padding:22px 5px;color:#9aa294;font-size:14px}.cart-row{display:grid;grid-template-columns:1fr auto;gap:8px;padding:12px 0;border-bottom:1px solid #edf0e7}.cart-name{font-weight:700;font-size:14px}.cart-price{font-size:12px;color:var(--muted);margin-top:3px}.qty{display:flex;align-items:center;gap:7px}.qty button{width:27px;height:27px;border-radius:8px;background:#edf2e6;color:var(--deep)}.total{display:flex;justify-content:space-between;align-items:center;border-top:1px dashed #d9dfd0;padding:17px 0;font-weight:700}.total strong{font-size:25px;color:var(--deep)}.primary{width:100%;padding:13px}.note{font-size:12px;color:var(--muted);text-align:center;line-height:1.6;margin:12px 0 0}
+.overlay{position:fixed;inset:0;background:#152016c9;display:none;place-items:center;padding:18px;z-index:5}.overlay.show{display:grid}.modal{background:white;border-radius:22px;padding:27px;max-width:430px;width:100%;text-align:center}.check{font-size:46px}.modal h2{margin:8px 0}.order-no{font-size:20px;font-weight:850;color:var(--deep);margin:10px}.modal .primary{margin-top:18px}
+@media(max-width:720px){.hero{grid-template-columns:1fr}.hero-art{min-height:120px;font-size:78px}main{grid-template-columns:1fr;padding:0 12px 28px;margin-top:16px}.cart{position:static}header{padding:22px 17px 28px}section{padding:16px}}@media(max-width:370px){.menu{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+ <div class="nav"><div class="logo">🧋 WOOTEA 沃提</div><span class="pill">清新好茶・每日現萃</span></div>
+ <div class="hero"><div><div class="eyebrow">YOUR DAILY TEA MOMENT</div><h1>今天，喝點好心情。</h1><p>從清爽果茶到濃郁奶茶，選一杯你喜歡的。<br>每一口，都是日常的小確幸。</p></div><div class="hero-art">🧋🍃</div></div>
+</div></header>
+<main>
+<section><h2>🌿 飲品菜單</h2><p class="sub">選擇飲品、甜度與冰量，加入購物車即可計算金額。</p>
+<div class="filters" id="filters"><button class="filter active" data-filter="全部">全部</button><button class="filter" data-filter="奶茶">人氣奶茶</button><button class="filter" data-filter="果茶">清爽果茶</button><button class="filter" data-filter="純茶">經典純茶</button></div>
+<div class="menu" id="menu"></div>
+</section>
+<section class="cart"><div class="cart-head"><h2>🛍️ 我的訂單</h2><button class="clear" id="clear">清空</button></div><p class="sub">甜度與冰量可在加入前選擇。</p>
+<div class="cart-list" id="cart"></div><div class="total"><span>訂單合計</span><strong id="total">NT$ 0</strong></div><button class="primary" id="submit">確認訂單　→</button><p class="note">此為 Wootea 風格的示範點餐 APP，並非官方網站；不會真的送出訂單。</p></section>
+</main>
+<div class="overlay" id="overlay" role="dialog" aria-modal="true"><div class="modal"><div class="check">🍵</div><h2>訂單確認完成！</h2><p>這是一筆示範訂單。</p><div class="order-no" id="orderNo"></div><div id="receipt" style="text-align:left;font-size:14px;line-height:1.9"></div><button class="primary" id="done">完成</button></div></div>
+<script>
+const products=[
+{id:1,name:"珍珠奶茶",category:"奶茶",desc:"濃郁奶香搭配 Q 彈珍珠",price:60,emoji:"🧋"},
+{id:2,name:"黑糖珍珠鮮奶",category:"奶茶",desc:"黑糖香氣與滑順鮮奶",price:70,emoji:"🥛"},
+{id:3,name:"烏龍奶茶",category:"奶茶",desc:"焙火茶香與奶香平衡",price:55,emoji:"🧋"},
+{id:4,name:"茉莉桃香綠茶",category:"果茶",desc:"茉莉茶底，帶有清甜桃香",price:55,emoji:"🍑"},
+{id:5,name:"百香雙響炮",category:"果茶",desc:"百香果酸甜，搭配雙料口感",price:60,emoji:"🍋"},
+{id:6,name:"檸檬青茶",category:"果茶",desc:"清新檸檬與回甘青茶",price:50,emoji:"🍋"},
+{id:7,name:"四季春青茶",category:"純茶",desc:"清爽淡雅，茶韻回甘",price:35,emoji:"🍵"},
+{id:8,name:"高山烏龍茶",category:"純茶",desc:"醇厚茶香，純粹耐喝",price:40,emoji:"🍃"}
+];
+const cart=new Map();let filter="全部";
+const money=n=>"NT$ "+n.toLocaleString("zh-TW");
+function renderMenu(){const list=products.filter(p=>filter==="全部"||p.category===filter);document.getElementById("menu").innerHTML=list.map(p=>`<article class="item"><div class="art">${p.emoji}</div><div class="body"><h3>${p.name}</h3><div class="desc">${p.desc}</div><div class="price-row"><span class="price">${money(p.price)}</span><button class="add" data-add="${p.id}">＋ 選擇</button></div></div></article>`).join("");}
+function renderCart(){const entries=[...cart.entries()];document.getElementById("cart").innerHTML=entries.length?entries.map(([key,qty])=>{const [id,sugar,ice]=key.split("|"),p=products.find(x=>x.id===Number(id));return `<div class="cart-row"><div><div class="cart-name">${p.name}</div><div class="cart-price">${sugar}・${ice}<br>${money(p.price)} × ${qty} = ${money(p.price*qty)}</div></div><div class="qty"><button data-change="${key}" data-delta="-1">−</button><b>${qty}</b><button data-change="${key}" data-delta="1">＋</button></div></div>`}).join(""):'<div class="empty">🍃<br>還沒有選擇飲品<br>挑一杯今天喜歡的味道吧！</div>';let total=entries.reduce((s,[key,q])=>s+products.find(p=>p.id===Number(key.split("|")[0])).price*q,0);document.getElementById("total").textContent=money(total);}
+document.getElementById("filters").addEventListener("click",e=>{const b=e.target.closest("[data-filter]");if(!b)return;filter=b.dataset.filter;document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===b));renderMenu();});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-add]");if(b){const p=products.find(x=>x.id===Number(b.dataset.add));const sugar=prompt("請選擇甜度：無糖 / 微糖 / 半糖 / 全糖","半糖");if(sugar===null)return;const s=["無糖","微糖","半糖","全糖"].includes(sugar.trim())?sugar.trim():"半糖";const ice=prompt("請選擇冰量：去冰 / 微冰 / 少冰 / 正常冰 / 熱飲","少冰");if(ice===null)return;const i=["去冰","微冰","少冰","正常冰","熱飲"].includes(ice.trim())?ice.trim():"少冰";const key=`${p.id}|${s}|${i}`;cart.set(key,(cart.get(key)||0)+1);renderCart();}
+const c=e.target.closest("[data-change]");if(c){const key=c.dataset.change,q=(cart.get(key)||0)+Number(c.dataset.delta);if(q<=0)cart.delete(key);else cart.set(key,q);renderCart();}});
+document.getElementById("clear").onclick=()=>{cart.clear();renderCart();};
+document.getElementById("submit").onclick=()=>{if(!cart.size){alert("請先選擇飲品喔！");return;}const entries=[...cart.entries()];const total=entries.reduce((s,[key,q])=>s+products.find(p=>p.id===Number(key.split("|")[0])).price*q,0);document.getElementById("orderNo").textContent="訂單編號 WT"+String(Date.now()).slice(-6);document.getElementById("receipt").innerHTML=entries.map(([key,q])=>{const [id,sugar,ice]=key.split("|"),p=products.find(x=>x.id===Number(id));return `${p.name}（${sugar}、${ice}）× ${q}　${money(p.price*q)}`}).join("<br>")+"<hr><b>總計："+money(total)+"</b>";document.getElementById("overlay").classList.add("show");};
+function closeModal(){document.getElementById("overlay").classList.remove("show");cart.clear();renderCart();}document.getElementById("done").onclick=closeModal;
+renderMenu();renderCart();
+</script>
+</body></html>
